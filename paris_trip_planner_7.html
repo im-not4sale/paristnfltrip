@@ -1,0 +1,998 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Paris NFL Trip · Oct 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #F7F4EE;
+  --surface: #FFFFFF;
+  --surface-2: #F2EDE4;
+  --border: #DDD5C5;
+  --border-light: #EDE7DC;
+  --gold: #A8792A;
+  --gold-light: #F5EDD8;
+  --gold-border: #C9A055;
+  --blue: #2A4E80;
+  --blue-light: #EAF0F8;
+  --text: #1C1A17;
+  --text-2: #4A4035;
+  --muted: #8A7A6A;
+  --green: #2A6A45;
+  --green-light: #EBF5EF;
+  --red: #B03030;
+  --red-light: #FAEDEC;
+  --shadow: rgba(80,60,30,0.08);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--text); font-family: 'Inter', system-ui, sans-serif; font-size: 13.5px; line-height: 1.55; }
+
+/* ── HEADER ── */
+.site-header {
+  background: var(--surface);
+  border-bottom: 2px solid var(--gold-border);
+  padding: 22px 36px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+.hd-left h1 {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--text);
+  letter-spacing: 0.01em;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.hd-left h1 span.flag { font-size: 22px; }
+.hd-left .sub {
+  color: var(--muted);
+  font-size: 12px;
+  margin-top: 3px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.hd-nav { display: flex; gap: 4px; }
+.hd-nav a {
+  padding: 5px 13px;
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  transition: all .15s;
+  background: var(--surface);
+}
+.hd-nav a:hover { border-color: var(--gold-border); color: var(--gold); background: var(--gold-light); }
+
+/* ── COST BANNER ── */
+.cost-banner {
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  padding: 20px 36px;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 32px;
+  align-items: center;
+  box-shadow: 0 2px 8px var(--shadow);
+}
+.cost-total .clabel {
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 3px;
+}
+.cost-total .amount {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 44px;
+  font-weight: 700;
+  color: var(--gold);
+  line-height: 1;
+}
+.cost-total .subnote { font-size: 10px; color: var(--muted); margin-top: 4px; }
+.cost-controls { display: flex; flex-direction: column; gap: 10px; }
+.ctrl-row { display: flex; align-items: center; gap: 10px; }
+.ctrl-lbl {
+  font-size: 10px;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--muted);
+  min-width: 90px;
+  font-weight: 500;
+}
+.tog-group { display: flex; gap: 2px; }
+.tog-btn {
+  padding: 5px 12px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--muted);
+  border-radius: 3px;
+  font-size: 11.5px;
+  font-family: 'Inter', sans-serif;
+  cursor: pointer;
+  transition: all .15s;
+  white-space: nowrap;
+}
+.tog-btn:hover { border-color: var(--gold-border); color: var(--gold); background: var(--gold-light); }
+.tog-btn.active { background: var(--gold-light); border-color: var(--gold-border); color: var(--gold); font-weight: 600; }
+.brk-table { display: flex; flex-direction: column; gap: 5px; min-width: 220px; }
+.brk-row { display: flex; justify-content: space-between; font-size: 12px; color: var(--muted); }
+.brk-row .bv { color: var(--text-2); font-variant-numeric: tabular-nums; font-weight: 500; }
+.brk-row.brk-total { border-top: 1px solid var(--border); padding-top: 6px; margin-top: 3px; }
+.brk-row.brk-total .bv { color: var(--gold); font-weight: 700; font-size: 13px; }
+.brk-row.brk-total span:first-child { color: var(--text-2); font-weight: 600; }
+
+/* ── SECTIONS ── */
+.section { padding: 32px 36px 40px; border-bottom: 1px solid var(--border-light); }
+.sec-hd { display: flex; align-items: baseline; gap: 14px; margin-bottom: 20px; }
+.sec-title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text);
+  letter-spacing: 0.01em;
+}
+.sec-sub { font-size: 11.5px; color: var(--muted); }
+
+/* ── INFO BARS (uniform beige throughout) ── */
+.info-bar {
+  font-size: 12px;
+  color: var(--text-2);
+  padding: 10px 15px;
+  background: #F5F0E6;
+  border: 1px solid #D8CDB8;
+  border-left: 3px solid #C4A870;
+  border-radius: 4px;
+  margin-bottom: 16px;
+  line-height: 1.55;
+}
+.info-bar.warn,
+.info-bar.blue,
+.info-bar.green,
+.info-bar.lavender {
+  background: #F5F0E6;
+  border-color: #D8CDB8;
+  border-left-color: #C4A870;
+  color: var(--text-2);
+}
+
+/* ── TABS ── */
+.tab-bar { display: flex; gap: 0; margin-bottom: 18px; border-bottom: 1px solid var(--border); }
+.tab-btn {
+  padding: 8px 18px;
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid transparent;
+  color: var(--muted);
+  font-size: 12.5px;
+  font-family: 'Inter', sans-serif;
+  cursor: pointer;
+  margin-bottom: -1px;
+  transition: all .15s;
+}
+.tab-btn.active { border-bottom-color: var(--gold); color: var(--gold); font-weight: 600; }
+.tab-panel { display: none; }
+.tab-panel.active { display: block; }
+
+/* ── FLIGHT CARDS ── */
+.flight-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+.f-card {
+  background: #2C1F0E;
+  border: 1px solid #3E2E18;
+  border-radius: 6px;
+  padding: 16px;
+  position: relative;
+  cursor: pointer;
+  transition: all .15s;
+  box-shadow: 0 1px 6px rgba(0,0,0,0.18);
+}
+.f-card:hover { border-color: #C9A055; box-shadow: 0 3px 12px rgba(0,0,0,0.25); }
+.f-card.f-selected { border-color: var(--gold); background: var(--gold-light); box-shadow: 0 2px 8px var(--shadow); }
+.f-badge {
+  position: absolute; top: -1px; right: 14px;
+  background: var(--gold); color: #FFF;
+  font-size: 9px; font-weight: 700; letter-spacing: 0.09em;
+  text-transform: uppercase; padding: 2px 8px;
+  border-radius: 0 0 4px 4px;
+}
+/* Dark card text defaults */
+.f-airline { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; color: #8A7558; margin-bottom: 3px; }
+.f-class-badge { display: inline-block; font-size: 10px; color: #7BADD6; background: rgba(56,130,210,0.15); padding: 1px 7px; border-radius: 3px; margin-bottom: 10px; font-weight: 500; }
+.f-route { display: flex; align-items: center; gap: 6px; margin-bottom: 10px; }
+.f-time { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 700; color: #EDE4D4; }
+.f-apt { font-size: 10px; color: #8A7558; margin-top: 1px; }
+.f-mid { flex: 1; text-align: center; }
+.f-arrow { color: #8A7558; font-size: 16px; }
+.f-layover { font-size: 10px; color: #8A7558; margin-top: 2px; }
+.f-meta { display: flex; justify-content: space-between; align-items: center; padding-top: 12px; border-top: 1px solid #3E2E18; }
+.f-price { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 700; color: #D4A843; }
+.f-pp { font-size: 10px; color: #8A7558; }
+/* Light overrides when selected */
+.f-card.f-selected .f-airline { color: var(--muted); }
+.f-card.f-selected .f-class-badge { color: var(--blue); background: var(--blue-light); }
+.f-card.f-selected .f-time { color: var(--text); }
+.f-card.f-selected .f-apt { color: var(--muted); }
+.f-card.f-selected .f-arrow { color: var(--muted); }
+.f-card.f-selected .f-layover { color: var(--muted); }
+.f-card.f-selected .f-meta { border-top-color: var(--border-light); }
+.f-card.f-selected .f-price { color: var(--gold); }
+.f-card.f-selected .f-pp { color: var(--muted); }
+.on-time { font-size: 10.5px; padding: 3px 8px; border-radius: 20px; font-weight: 500; }
+.on-time.good { background: rgba(42,106,69,0.25); color: #7ECFA0; }
+.on-time.bad { background: rgba(176,48,48,0.25); color: #EF9090; }
+.f-card.f-selected .on-time.good { background: var(--green-light); color: var(--green); }
+.f-card.f-selected .on-time.bad { background: var(--red-light); color: var(--red); }
+.bro-note { font-size: 12px; color: var(--text-2); padding: 10px 14px; background: #F5F0E6; border: 1px solid #D8CDB8; border-left: 3px solid #C4A870; border-radius: 4px; margin-bottom: 14px; }
+.bro-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 12px; }
+.bro-card { background: var(--surface); border: 1px solid var(--border); border-radius: 6px; padding: 14px; box-shadow: 0 1px 4px var(--shadow); }
+
+/* ── RESPONSIVE ── */
+body { word-wrap: break-word; overflow-wrap: break-word; }
+img, iframe { max-width: 100%; }
+
+@media (max-width: 1024px) {
+  .hotel-grid-3 { grid-template-columns: 1fr 1fr; }
+  .cost-banner { grid-template-columns: 1fr 1fr; }
+  .brk-table { min-width: 0; }
+}
+@media (max-width: 800px) {
+  .cost-banner { grid-template-columns: 1fr; gap: 16px; }
+  .flight-grid { grid-template-columns: 1fr 1fr; }
+  .hotel-grid-3 { grid-template-columns: 1fr; }
+  .tix-grid { grid-template-columns: 1fr; }
+  .rationale-grid { grid-template-columns: 1fr; }
+  .section { padding: 24px 20px 30px; }
+  .site-header { padding: 16px 20px; flex-wrap: wrap; gap: 12px; }
+  .cost-banner { padding: 18px 20px; }
+}
+@media (max-width: 520px) {
+  .flight-grid { grid-template-columns: 1fr; }
+  .bro-grid { grid-template-columns: 1fr; }
+  .hd-nav { display: none; }
+  .hotel-nights-bar { flex-wrap: wrap; gap: 10px; }
+  .hnb-tip { display: none; }
+  .tog-group { flex-wrap: wrap; }
+  .ctrl-row { flex-wrap: wrap; }
+  .cost-controls { gap: 12px; }
+  .sec-title { font-size: 17px; }
+}
+.bro-note { font-size: 12px; color: var(--text-2); padding: 10px 14px; background: var(--blue-light); border: 1px solid #8AACD6; border-left: 3px solid var(--blue); border-radius: 4px; margin-bottom: 14px; }
+.bro-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 12px; }
+.bro-card { background: var(--surface); border: 1px solid var(--border); border-radius: 6px; padding: 14px; box-shadow: 0 1px 4px var(--shadow); }
+
+/* ── TICKET CARDS ── */
+.tix-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+.tix-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 18px;
+  cursor: pointer;
+  transition: all .15s;
+  position: relative;
+  box-shadow: 0 1px 4px var(--shadow);
+}
+.tix-card:hover { border-color: var(--gold-border); }
+.tix-card.tix-selected { border-color: var(--gold); background: var(--gold-light); }
+.tix-tier { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); margin-bottom: 5px; }
+.tix-section { font-size: 11.5px; color: var(--text-2); margin-bottom: 12px; }
+.tix-eur { font-family: 'Playfair Display', serif; font-size: 30px; font-weight: 700; color: var(--text); line-height: 1; }
+.tix-cur { font-size: 13px; color: var(--muted); font-family: 'Inter', sans-serif; font-weight: 400; }
+.tix-usd { font-size: 12px; color: var(--muted); margin: 4px 0 8px; }
+.tix-3 { font-size: 12px; color: var(--muted); margin-bottom: 10px; }
+.tix-3 strong { color: var(--text); }
+.tix-tag { display: inline-block; font-size: 10.5px; padding: 3px 9px; border-radius: 4px; }
+.tix-tag.warn { background: var(--red-light); color: var(--red); }
+.tix-tag.ok { background: var(--green-light); color: var(--green); }
+
+/* ── MAP ── */
+.map-embed-wrapper {
+  width: 100%;
+  border-radius: 6px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  box-shadow: 0 2px 10px var(--shadow);
+}
+.map-embed-wrapper iframe { display: block; width: 100%; height: 520px; border: 0; }
+.map-note { font-size: 12px; color: var(--text-2); margin-top: 12px; padding: 10px 15px; background: #F5F0E6; border: 1px solid #D8CDB8; border-left: 3px solid #C4A870; border-radius: 4px; line-height: 1.55; }
+
+/* ── HOTEL SECTION ── */
+.hotel-nights-bar {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 22px;
+  padding: 14px 18px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+}
+.hnb-label { font-size: 11.5px; font-weight: 600; color: var(--text-2); text-transform: uppercase; letter-spacing: 0.07em; white-space: nowrap; }
+.hnb-btns { display: flex; gap: 4px; }
+.hnb-btn {
+  padding: 7px 18px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--muted);
+  border-radius: 4px;
+  font-size: 13px;
+  font-family: 'Inter', sans-serif;
+  cursor: pointer;
+  transition: all .15s;
+  font-weight: 500;
+}
+.hnb-btn:hover { border-color: var(--gold-border); color: var(--gold); background: var(--gold-light); }
+.hnb-btn.active { background: var(--gold); border-color: var(--gold); color: #FFF; font-weight: 600; }
+.hnb-tip { font-size: 11px; color: var(--muted); margin-left: auto; }
+
+.hotel-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.h-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  box-shadow: 0 2px 8px var(--shadow);
+  transition: box-shadow .2s;
+  position: relative;
+}
+.h-card:hover { box-shadow: 0 4px 16px var(--shadow); }
+.h-type-badge {
+  font-size: 9.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--gold);
+  background: var(--gold-light);
+  border: 1px solid var(--gold-border);
+  border-radius: 3px;
+  padding: 2px 8px;
+  display: inline-block;
+  margin-bottom: 10px;
+  align-self: flex-start;
+}
+.h-name { font-family: 'Playfair Display', serif; font-size: 15px; font-weight: 700; color: var(--text); margin-bottom: 3px; line-height: 1.3; }
+.h-area { font-size: 10.5px; color: var(--muted); margin-bottom: 12px; }
+.h-detail-row { display: flex; gap: 0; flex-direction: column; gap: 6px; margin-bottom: 12px; }
+.h-detail { font-size: 11.5px; color: var(--text-2); display: flex; gap: 6px; }
+.h-detail .dk { color: var(--muted); min-width: 70px; font-size: 11px; }
+.h-transit { font-size: 11px; color: var(--text-2); padding: 7px 10px; background: var(--blue-light); border-radius: 4px; margin-bottom: 10px; border: 1px solid #C0D4EC; line-height: 1.5; }
+.h-note { font-size: 11.5px; color: var(--muted); line-height: 1.5; flex: 1; }
+.h-price-row { padding-top: 14px; border-top: 1px solid var(--border-light); margin-top: 14px; display: flex; align-items: baseline; gap: 6px; }
+.h-pval { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 700; color: var(--gold); }
+.h-pnote { font-size: 11px; color: var(--muted); }
+.book-btn {
+  display: block;
+  width: 100%;
+  margin-top: 12px;
+  padding: 10px 16px;
+  background: var(--blue);
+  color: white;
+  text-decoration: none;
+  text-align: center;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  transition: background .15s;
+}
+.book-btn:hover { background: #1A3A62; }
+.tag-verify { display: inline-block; font-size: 10px; padding: 2px 7px; border-radius: 3px; background: var(--blue-light); color: var(--blue); border: 1px solid #B0C8E8; margin-top: 8px; }
+
+/* ── RATIONALE ── */
+.rationale-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+.rat-card { background: var(--surface); border: 1px solid var(--border-light); border-radius: 6px; padding: 16px; box-shadow: 0 1px 4px var(--shadow); }
+.rat-card .ri { font-size: 22px; margin-bottom: 7px; }
+.rat-card .rh { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--gold); margin-bottom: 7px; }
+.rat-card .rb { font-size: 11.5px; color: var(--muted); line-height: 1.55; }
+
+/* ── FOOTER ── */
+.site-footer {
+  background: var(--surface);
+  border-top: 2px solid var(--border);
+  padding: 16px 36px;
+  font-size: 11px;
+  color: var(--muted);
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+/* ── DIVIDER ── */
+.divider { height: 1px; background: var(--border-light); margin: 0 36px; }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="site-header">
+  <div class="hd-left">
+    <h1><span class="flag">🇫🇷</span> Paris NFL Trip Planner</h1>
+    <div class="sub">Dan · Dad · Brother &nbsp;·&nbsp; Departing 23 Oct 2026 &nbsp;·&nbsp; Steelers vs Saints · Stade de France</div>
+  </div>
+  <nav class="hd-nav">
+    <a href="#flights">Flights</a>
+    <a href="#tickets">Tickets</a>
+    <a href="#map-section">Map</a>
+    <a href="#accommodation">Hotels</a>
+  </nav>
+</header>
+
+<!-- COST BANNER -->
+<div class="cost-banner">
+  <div class="cost-total">
+    <div class="clabel">Estimated Trip Total</div>
+    <div class="amount" id="totalAmt">—</div>
+    <div class="subnote" id="costSubnote">Outbound only · No return flights</div>
+  </div>
+
+  <div class="cost-controls">
+    <div class="ctrl-row">
+      <span class="ctrl-lbl">Flight Class</span>
+      <div class="tog-group">
+        <button class="tog-btn active" id="btnPremium" onclick="setClass('premium',this)">Premium Economy</button>
+        <button class="tog-btn" id="btnBusiness" onclick="setClass('business',this)">Business Class</button>
+        <button class="tog-btn" id="btnFirst" onclick="setClass('firstclass',this)">First Class</button>
+      </div>
+    </div>
+    <div class="ctrl-row">
+      <span class="ctrl-lbl">Ticket Tier</span>
+      <div class="tog-group">
+        <button class="tog-btn tix-tog active" id="t-longside" onclick="setTicket('longside',this)">Longside Upper</button>
+        <button class="tog-btn tix-tog" id="t-shortside_upper" onclick="setTicket('shortside_upper',this)">Shortside Upper</button>
+        <button class="tog-btn tix-tog" id="t-shortside_mid" onclick="setTicket('shortside_mid',this)">Shortside Mid</button>
+      </div>
+    </div>
+    <div class="ctrl-row">
+      <span class="ctrl-lbl">Accommodation</span>
+      <div class="tog-group">
+        <button class="tog-btn htl-tog active" id="h-hotel" onclick="setHotelCost('hotel',this)">Les Jardins</button>
+        <button class="tog-btn htl-tog" id="h-apt" onclick="setHotelCost('apt',this)">2 BDR Apt</button>
+        <button class="tog-btn htl-tog" id="h-verneuil" onclick="setHotelCost('verneuil',this)">Hôtel Verneuil</button>
+      </div>
+    </div>
+    <div class="ctrl-row">
+      <span class="ctrl-lbl">Nights</span>
+      <div class="tog-group">
+        <button class="tog-btn ngt-tog" id="bn-3" onclick="setNights(3,this)">3 nights</button>
+        <button class="tog-btn ngt-tog active" id="bn-5" onclick="setNights(5,this)">5 nights</button>
+        <button class="tog-btn ngt-tog" id="bn-7" onclick="setNights(7,this)">7 nights</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="brk-table">
+    <div class="brk-row" id="brkFlightRow"><span id="brkFlightLabel">Flights × 3 (PIT → CDG)</span><span class="bv" id="brkFlights">—</span></div>
+    <div class="brk-row" id="brkBroConRow" style="display:none"><span id="brkBroConLabel">Brother (TPA → ATL)</span><span class="bv" id="brkBroCon">—</span></div>
+    <div class="brk-row" id="brkBroRow"><span id="brkBroLabel">Brother: TPA → PIT</span><span class="bv" id="brkBrother">$311</span></div>
+    <div class="brk-row"><span>Game tickets × 3</span><span class="bv" id="brkTickets">—</span></div>
+    <div class="brk-row"><span id="brkHotelLabel">Accommodation</span><span class="bv" id="brkHotel">—</span></div>
+    <div class="brk-row brk-total"><span>Grand Total</span><span class="bv" id="brkGrand">—</span></div>
+  </div>
+</div>
+
+<!-- FLIGHTS -->
+<section class="section" id="flights">
+  <div class="sec-hd">
+    <span class="sec-title">Flights</span>
+    <span class="sec-sub">All prices per person · One-way outbound only · Select to update total</span>
+  </div>
+  <div class="info-bar" id="fcNote" style="display:none">✈ <strong>First Class via Air France (AF0031).</strong> Dan & Dad connect PIT → ATL first (AF3477, Business cabin — no First on domestic segments), then all three board the same AF0031 at Atlanta for the transatlantic First Class leg to CDG. $18,064 per person covers each traveller's full journey.</div>
+  <!-- Normal flights (Premium / Business) -->
+  <div id="normalFlights">
+    <div class="tab-bar">
+      <button class="tab-btn active" onclick="switchTab(event,'pit-cdg')">Pittsburgh → Paris (Dan, Dad & Brother)</button>
+      <button class="tab-btn" id="broTabBtn" onclick="switchTab(event,'tpa-con')">Tampa → Pittsburgh (Brother only)</button>
+    </div>
+    <div class="tab-panel active" id="tab-pit-cdg"><div class="flight-grid" id="flightCards"></div></div>
+    <div class="tab-panel" id="tab-tpa-con">
+      <div class="bro-note" id="broNote">Brother flies Tampa → Pittsburgh to join Dan & Dad, then all three depart PIT together. All Southwest options are $311 and 92% on-time (direct flight).</div>
+      <div class="bro-grid" id="brotherCards"></div>
+    </div>
+  </div>
+  <!-- First Class layout (only shown when First Class is selected) -->
+  <div id="fcLayout" style="display:none"></div>
+</section>
+
+<!-- TICKETS -->
+<section class="section" id="tickets">
+  <div class="sec-hd">
+    <span class="sec-title">Game Tickets</span>
+    <span class="sec-sub">Ticombo (resale) · Steelers vs Saints · Oct 25 · Filtered: 3 tickets</span>
+  </div>
+  <div class="info-bar blue">EUR → USD at approx. 1 EUR = $1.09 · Rate fluctuates — verify before purchase. &nbsp;Official sale opens <strong>July 16</strong> via NFL/Ticketmaster — likely cheaper than Ticombo. &nbsp;<a href="https://www.ticombo.com/en/sports-tickets/american%20football-tickets/tbd-vs-new-orleans-saints-nfl-melbourne-games-2610252359/aa2b0f87-5963-4ffc-b294-8d509924d168?utm_source=google&utm_medium=cpc&utm_campaign=EN_SEA_nfl-international-games&gad_source=1&gad_campaignid=23928455167&gbraid=0AAAAADEUh9fTvbLAyhjY6sOpLB3sDLsY8&gclid=Cj0KCQjwo_PRBhDNARIsAEcVALWp5QTJ_ZVsTXa09Crgd7Pk8ArUG6CejI1dra83JaSGSWCd74fUyKAaAseOEALw_wcB&quantity=3" target="_blank" rel="noopener" style="color:var(--blue);font-weight:600;text-decoration:underline;text-underline-offset:2px;">Browse current listings on Ticombo →</a></div>
+  <div class="tix-grid" id="ticketCards"></div>
+</section>
+
+<!-- MAP -->
+<section class="section" id="map-section">
+  <div class="sec-hd">
+    <span class="sec-title">Saint-Germain — Points of Interest</span>
+    <span class="sec-sub">Custom map · Click markers for details</span>
+  </div>
+  <div class="map-embed-wrapper">
+    <iframe
+      src="https://www.google.com/maps/d/u/0/embed?mid=1DuS2aDVb6FLns_4tBqDm9qj77bgMgYI&ehbc=2E312F"
+      allowfullscreen
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade">
+    </iframe>
+  </div>
+  <div class="map-note" style="margin-top:14px;">
+    📍 <strong>About this map</strong><br>
+    All markers have been added as recommendations only and include suggested hotels, restaurants, bars, cafés, attractions, and key landmarks throughout the trip. I've also pinned a number of Paris' most popular sightseeing areas to help with planning and getting your bearings while you're in the city. The blue line shows the recommended Metro route between Saint-Germain and the stadium.
+  </div>
+  <div class="map-note">
+    🍫 <strong>Amaury Guichon</strong> — I wasn't able to find a location directly associated with Amaury, so I've pinned Lenôtre instead, as it's where he trained as a chocolatier. Thought it was a fitting alternative if you wanted something connected to his journey.
+  </div>
+</section>
+
+<!-- WHY SAINT-GERMAIN -->
+<section class="section" id="rationale">
+  <div class="sec-hd">
+    <span class="sec-title">Why Saint-Germain-des-Prés?</span>
+    <span class="sec-sub">Neighbourhood recommendation</span>
+  </div>
+  <p style="font-size:13.5px;color:var(--text-2);line-height:1.65;margin-bottom:20px;max-width:min(820px,100%);">Based on your preference to stay in a lively, walkable part of Paris rather than near the stadium, I focused my search on the Saint-Germain-des-Prés / Luxembourg area. This neighbourhood is widely regarded as one of the best places to stay for visitors looking to experience Paris through its cafés, restaurants, bars and iconic landmarks, while still offering straightforward access to the stadium on game day.</p>
+  <div class="rationale-grid">
+    <div class="rat-card">
+      <div class="ri">🍽️</div>
+      <div class="rh">Food & Atmosphere</div>
+      <div class="rb">Consistently one of the most recommended neighbourhoods for a premium Paris experience — excellent restaurants, cafés, bars, and boutique shopping all within a short walk of either accommodation option.</div>
+    </div>
+    <div class="rat-card">
+      <div class="ri">🗺️</div>
+      <div class="rh">Central Access</div>
+      <div class="rb">Strong fit for a trip built around eating well and experiencing the city. The Eiffel Tower, Louvre, Musée d'Orsay, Notre-Dame, and Luxembourg Gardens are all within walking distance or a short Uber. Stadium day is a straightforward Metro or RER ride.</div>
+    </div>
+    <div class="rat-card">
+      <div class="ri">💬</div>
+      <div class="rh">Traveller Consensus</div>
+      <div class="rb">Frequently described as the quintessential Paris base — particularly for visitors who want to spend their days walking, eating well, and absorbing the city rather than just checking off sights. The Seine is right there.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ACCOMMODATION -->
+<section class="section" id="accommodation">
+  <div class="sec-hd">
+    <span class="sec-title">Accommodation</span>
+    <span class="sec-sub">Saint-Germain · All rates based on 5-night reference prices</span>
+  </div>
+
+  <div class="info-bar green">Nightly rate assumes flat pricing — actual rate may vary slightly. As larger, American-style hotel suites are relatively uncommon in central Paris, I've included three accommodation styles to suit different preferences.</div>
+
+  <!-- NIGHTS SELECTOR (prominent, in the hotel section) -->
+  <div class="hotel-nights-bar">
+    <span class="hnb-label">Select duration:</span>
+    <div class="hnb-btns">
+      <button class="hnb-btn" id="hnb-3" onclick="setNightsHotel(3,this)">3 nights</button>
+      <button class="hnb-btn active" id="hnb-5" onclick="setNightsHotel(5,this)">5 nights</button>
+      <button class="hnb-btn" id="hnb-7" onclick="setNightsHotel(7,this)">7 nights</button>
+    </div>
+    <span class="hnb-tip">Prices update automatically · Also reflected in the total above</span>
+  </div>
+
+  <div class="hotel-grid-3" id="hotelCards"></div>
+</section>
+
+<footer class="site-footer">
+  <span>Return flights not included · Accommodation TBD pending Dan's confirmation · Prices subject to change</span>
+  <span>⚠ Dad's passport status unconfirmed &nbsp;·&nbsp; Official tickets on sale Jul 16 &nbsp;·&nbsp; ETIAS required for all 3 travellers</span>
+</footer>
+
+<script>
+const EUR_USD = 1.09;
+
+// ── FLIGHT DATA ──
+const FLIGHTS = [
+  // Premium Economy
+  {cls:'premium',airline:'KLM',dep:'11:45',arr:'06:50',date:'Oct 24',depFrom:'PIT',arrTo:'CDG',layover:'2h 52m via ATL',price:1270,onTime:93,rec:true,label:'Premium Economy'},
+  {cls:'premium',airline:'United',dep:'14:01',arr:'09:20',date:'Oct 24',depFrom:'PIT',arrTo:'CDG',layover:'3h 15m via ORD',price:1782,onTime:52,rec:false,label:'Premium Economy'},
+  {cls:'premium',airline:'KLM',dep:'16:25',arr:'10:30',date:'Oct 24',depFrom:'PIT',arrTo:'CDG',layover:'1h 48m via ATL',price:2006,onTime:93,rec:false,label:'Premium Economy'},
+  // Business Class
+  {cls:'business',airline:'KLM',dep:'11:45',arr:'06:50',date:'Oct 24',depFrom:'PIT',arrTo:'CDG',layover:'2h 52m via ATL',price:3948,onTime:93,rec:true,label:'Business Standard'},
+  {cls:'business',airline:'American Airlines',dep:'14:01',arr:'07:45',date:'Oct 24',depFrom:'PIT',arrTo:'CDG',layover:'3h 15m via ORD',price:4098,onTime:52,rec:false,label:'United Polaris (Business)'},
+  {cls:'business',airline:'KLM',dep:'16:25',arr:'10:30',date:'Oct 24',depFrom:'PIT',arrTo:'CDG',layover:'1h 48m via ATL',price:4658,onTime:93,rec:false,label:'Business Standard'},
+  // First Class
+  {cls:'firstclass',airline:'Delta + Air France',dep:'13:50',arr:'06:50',date:'Oct 24',depFrom:'PIT',arrTo:'CDG',
+   layover:'0h 45m via ATL',price:9032,onTime:null,rec:true,label:'First Class',
+   packageNote:'$18,064 for Dan + Dad (2 people)',
+   cabinNote:'PIT→ATL: Business cabin · AF3477 · Boeing 737-900 — First class unavailable on this domestic segment',
+   transNote:'ATL→CDG: First Class · AF0031 · Boeing 777-300'},
+];
+
+// Brother: Tampa → Pittsburgh (for Premium & Business)
+const BROTHER_PIT = [
+  {dep:'11:05',arr:'13:10',apt:'PIT',date:'Oct 22',note:'Arrives day before — recommended',airline:'Southwest',price:311,onTime:92,via:'Direct ✈'},
+  {dep:'21:40',arr:'00:05',apt:'PIT',date:'Oct 22/23',note:'Arrives early Oct 23',airline:'Southwest',price:311,onTime:92,via:'Direct ✈'},
+  {dep:'05:30',arr:'07:50',apt:'PIT',date:'Oct 23',note:'Same day — only works with KLM 11:45',airline:'Southwest',price:311,onTime:92,via:'Direct ✈'},
+];
+
+// Brother: Tampa → Atlanta (for First Class — joins AF0031 at ATL)
+const BROTHER_ATL = [
+  {dep:'16:25',arr:'00:12',apt:'ATL',date:'Oct 22/23',note:'Arrives Oct 23 · Connects to AF0031 at ATL',
+   airline:'JetBlue',flight:'B6592',price:356,onTime:57,
+   via:'via BOS',
+   seg1:{dep:'16:25',arr:'19:30',from:'TPA',to:'BOS',duration:'3h 05m',terminal:'Terminal C'},
+   seg2:{dep:'20:59',arr:'00:12',from:'BOS',to:'ATL',duration:'3h 13m',terminal:'C → N'},
+   layover:'1h 29m at BOS'},
+  {dep:'18:47',arr:'00:45',apt:'ATL',date:'Oct 22/23',note:'Arrives Oct 23 · Connects to AF0031 at ATL',
+   airline:'United',flight:'UA1370',price:502,onTime:66,
+   via:'via IAD',
+   seg1:{dep:'18:47',arr:'21:03',from:'TPA',to:'IAD',duration:'2h 16m',terminal:''},
+   seg2:{dep:'22:44',arr:'00:45',from:'IAD',to:'ATL',duration:'2h 01m',terminal:'→ Terminal N'},
+   layover:'1h 41m at IAD'},
+];
+
+const TICKETS = [
+  {id:'longside',tier:'Longside Upper Tier',section:'Section D6/C7 · Row 74–84',eur:247,warn:true,warnTxt:'⚠ Home Fans section (Saints)'},
+  {id:'shortside_upper',tier:'Shortside Upper Tier',section:'Section A4/B2 · Row 69–71',eur:256,warn:false,warnTxt:'✓ Neutral section'},
+  {id:'shortside_mid',tier:'Shortside Middle Tier',section:'Section K9 · Row 46',eur:312,warn:false,warnTxt:'✓ Neutral section'},
+];
+
+const HOTELS = {
+  hotel: {
+    name: 'Les Jardins du Luxembourg',
+    typeBadge: '4-Star Hotel',
+    address: '5 Impasse Royer-Collard, 75005',
+    nightlyRate: 818.40,
+    bedrooms: 'Family Suite — up to 4 guests',
+    config: 'Suite with multiple sleeping areas',
+    transit: 'RER B Luxembourg: 2 min walk · Odéon Metro (Lines 4 & 10): 10 min walk',
+    note: 'Quiet cul-de-sac next to Luxembourg Gardens. 4-star amenities including sauna. RER B 2 min walk provides direct access to the airport and an easy route to the stadium.',
+    verify: null,
+    bookUrl: 'https://www.booking.com/Share-ORFe46',
+    extra: 'A boutique hotel option with a family suite that keeps the group together while offering the convenience and services of a hotel.',
+  },
+  apt: {
+    name: '2 BDR 6P Saint-Germain',
+    typeBadge: 'Apartment · 2 Bedrooms',
+    address: 'Rue Saint-André des Arts, 75006',
+    nightlyRate: 1000,
+    bedrooms: '2 separate bedrooms · sleeps 6',
+    config: 'Dan + Dad in one room · Brother in second',
+    transit: 'Odéon Metro (Lines 4 & 10): 3 min walk · Saint-Michel RER: 8 min walk',
+    note: 'Located on the most lively street in Saint-Germain, lined with bars and pubs. Steps from Le Procope (1686) and Brasserie des Prés. Two full bedrooms means each group gets privacy.',
+    verify: 'Verify twin bed configuration before booking',
+    bookUrl: 'https://www.booking.com/Share-t3fBs3',
+    extra: 'A spacious apartment alternative with separate bedrooms and a dedicated living area, providing a layout more comparable to a traditional US-style suite.',
+  },
+  verneuil: {
+    name: 'Hôtel Verneuil Saint-Germain',
+    typeBadge: 'Boutique Hotel · 2 Rooms',
+    address: '8 Rue de Verneuil, 75007',
+    nightlyRate: 1011,
+    bedrooms: '2 Deluxe Rooms booked separately',
+    config: 'Two private rooms — ideal privacy for 3',
+    transit: 'Rue du Bac Metro (Line 12): 4 min walk · Saint-Germain-des-Prés (Line 4): 8 min walk',
+    note: 'Intimate boutique hotel on one of Saint-Germain\'s most storied streets — Rue de Verneuil, famously associated with Serge Gainsbourg. Two deluxe rooms gives each person their own private space.',
+    verify: null,
+    bookUrl: 'https://www.booking.com/Share-6r9oZNl',
+    extra: 'A premium hotel option offering additional privacy and comfort through two separate rooms while remaining in the same central neighbourhood.',
+  },
+};
+
+// ── STATE ──
+let selCls = 'premium';
+let selFltIdx = 0;
+let selBroConIdx = 0; // index into BROTHER_ATL (first class connector only)
+let selTix = 'longside';
+let selHotelKey = 'hotel';
+let selNights = 5;
+
+function getSelFlt() { const f = FLIGHTS.filter(x => x.cls === selCls); return f[selFltIdx] || f[0]; }
+function getSelTix() { return TICKETS.find(t => t.id === selTix); }
+function getHotelCostNum() { return Math.round(HOTELS[selHotelKey].nightlyRate * selNights); }
+function fmt(n) { return '$' + Math.round(n).toLocaleString('en-US'); }
+
+// ── COST CALCULATOR ──
+function updateCosts() {
+  const tix = getSelTix();
+  const tkts = Math.round(tix.eur * EUR_USD) * 3;
+  const htl = getHotelCostNum();
+  const hname = HOTELS[selHotelKey].name.split(' ').slice(0,2).join(' ');
+
+  let tot;
+
+  if (selCls === 'firstclass') {
+    const fcPerPerson = 18064;
+    const fcAll3 = fcPerPerson * 3;          // $54,192
+    const brokerCon = BROTHER_ATL[selBroConIdx].price;
+    tot = fcAll3 + brokerCon + tkts + htl;
+
+    document.getElementById('brkFlightLabel').textContent = 'First Class × 3 (ATL→CDG)';
+    document.getElementById('brkFlights').textContent = fmt(fcAll3);
+    document.getElementById('brkBroConRow').style.display = '';
+    document.getElementById('brkBroConLabel').textContent = 'Brother connector (TPA→ATL)';
+    document.getElementById('brkBroCon').textContent = fmt(brokerCon);
+    document.getElementById('brkBroRow').style.display = 'none';
+  } else {
+    const flt = getSelFlt();
+    tot = (flt.price * 3) + 311 + tkts + htl;
+
+    document.getElementById('brkFlightLabel').textContent = 'Flights × 3 (PIT → CDG)';
+    document.getElementById('brkFlights').textContent = fmt(flt.price * 3);
+    document.getElementById('brkBroConRow').style.display = 'none';
+    document.getElementById('brkBroRow').style.display = '';
+    document.getElementById('brkBroLabel').textContent = 'Brother: TPA → PIT';
+    document.getElementById('brkBrother').textContent = '$311';
+  }
+
+  document.getElementById('totalAmt').textContent = '~' + fmt(tot);
+  document.getElementById('brkTickets').textContent = '~' + fmt(tkts);
+  document.getElementById('brkHotel').textContent = fmt(htl);
+  document.getElementById('brkHotelLabel').textContent = hname + ' (' + selNights + 'n)';
+  document.getElementById('brkGrand').textContent = '~' + fmt(tot);
+  document.getElementById('costSubnote').textContent = 'Outbound only · No return flights · ' + selNights + ' nights accommodation';
+}
+
+// ── FLIGHT CARDS ──
+function broAtlCard(b, i) {
+  return `
+    <div class="bro-card" onclick="selBroCon(${i})" style="cursor:pointer;transition:border-color .15s,background .15s;${i === selBroConIdx ? 'border-color:var(--gold);background:var(--gold-light);' : ''}">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px;">
+        <div>
+          <div style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);">${b.airline} · ${b.flight}</div>
+          <div style="font-size:10px;color:var(--muted);margin-top:2px;">${b.via}</div>
+        </div>
+        <div class="on-time ${b.onTime >= 75 ? 'good' : 'bad'}" style="flex-shrink:0;">${b.onTime >= 75 ? '✓' : '⚠'} ${b.onTime}% on-time</div>
+      </div>
+      <div style="border-top:1px solid var(--border-light);padding-top:8px;margin-bottom:4px;">
+        <div style="display:flex;justify-content:space-between;font-size:11px;margin-bottom:2px;">
+          <span><strong style="font-family:'Playfair Display',serif;font-size:15px;">${b.seg1.dep}</strong> <span style="color:var(--muted);">${b.seg1.from}</span></span>
+          <span style="color:var(--muted);font-size:10px;">${b.seg1.duration}</span>
+          <span><strong style="font-family:'Playfair Display',serif;font-size:15px;">${b.seg1.arr}</strong> <span style="color:var(--muted);">${b.seg1.to}</span></span>
+        </div>
+        <div style="text-align:center;font-size:10px;color:var(--muted);background:var(--surface-2);border-radius:3px;padding:3px 6px;margin:5px 0;">${b.layover}</div>
+        <div style="display:flex;justify-content:space-between;font-size:11px;">
+          <span><strong style="font-family:'Playfair Display',serif;font-size:15px;">${b.seg2.dep}</strong> <span style="color:var(--muted);">${b.seg2.from}</span></span>
+          <span style="color:var(--muted);font-size:10px;">${b.seg2.duration}</span>
+          <span><strong style="font-family:'Playfair Display',serif;font-size:15px;">${b.seg2.arr}</strong> <span style="color:var(--muted);">ATL ${b.seg2.terminal}</span></span>
+        </div>
+      </div>
+      <div style="display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--border-light);padding-top:10px;margin-top:6px;">
+        <div><div style="font-family:'Playfair Display',serif;font-size:17px;font-weight:700;color:var(--gold);">${fmt(b.price)}</div><div class="f-pp">one-way</div></div>
+        <div style="font-size:10px;color:var(--muted);text-align:right;">${b.date}</div>
+      </div>
+    </div>`;
+}
+
+function renderFlights() {
+  const isFirst = selCls === 'firstclass';
+  document.getElementById('normalFlights').style.display = isFirst ? 'none' : '';
+  document.getElementById('fcLayout').style.display = isFirst ? '' : 'none';
+
+  if (isFirst) {
+    document.getElementById('fcLayout').innerHTML = `
+      <p style="font-size:12px;color:var(--muted);margin-bottom:18px;line-height:1.6;">
+        Dan & Dad fly PIT → ATL first (AF3477), then <strong>all three board AF0031 together at Atlanta</strong> for the First Class leg to Paris. The brother connects to Atlanta independently via TPA.
+      </p>
+
+      <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:10px;">Step 1 — Getting to Atlanta</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:24px;align-items:start;">
+
+        <!-- Dan & Dad -->
+        <div>
+          <div style="font-size:11px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.07em;margin-bottom:8px;">Dan & Dad · PIT → ATL</div>
+          <div class="bro-card" style="border-color:var(--border);">
+            <div style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:10px;">Delta · AF3477 · Boeing 737-900</div>
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;">
+              <div><div style="font-family:'Playfair Display',serif;font-size:22px;font-weight:700;">13:50</div><div class="f-apt">PIT · Oct 23</div></div>
+              <div style="flex:1;text-align:center;"><div style="color:var(--muted);font-size:15px;">→</div><div style="font-size:10px;color:var(--muted);">1h 55m</div></div>
+              <div style="text-align:right"><div style="font-family:'Playfair Display',serif;font-size:22px;font-weight:700;">15:45</div><div class="f-apt">ATL · Oct 23</div></div>
+            </div>
+            <div style="font-size:11px;padding:7px 10px;background:var(--surface-2);border-radius:4px;color:var(--muted);line-height:1.5;margin-bottom:10px;">
+              ⚠ Business cabin on this leg — First Class unavailable on Boeing 737-900 domestic segments
+            </div>
+            <div style="font-size:11px;color:var(--muted);border-top:1px solid var(--border-light);padding-top:8px;">
+              0h 45m connection at ATL before AF0031 departs 16:30
+            </div>
+          </div>
+        </div>
+
+        <!-- Brother -->
+        <div>
+          <div style="font-size:11px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.07em;margin-bottom:8px;">
+            Brother · TPA → ATL
+            <span style="font-size:10px;font-weight:400;color:var(--muted);text-transform:none;letter-spacing:0;margin-left:6px;">click to select</span>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:10px;">
+            ${BROTHER_ATL.map((b, i) => broAtlCard(b, i)).join('')}
+          </div>
+        </div>
+      </div>
+
+      <!-- Shared leg -->
+      <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:10px;">Step 2 — All Three Board Together · ATL → CDG</div>
+      <div style="background:var(--gold-light);border:2px solid var(--gold-border);border-radius:8px;padding:20px;max-width:580px;">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;gap:12px;">
+          <div>
+            <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--gold);margin-bottom:3px;">Air France · AF0031 · Boeing 777-300</div>
+            <div style="font-size:11px;color:var(--muted);">First Class — La Première &nbsp;·&nbsp; Dan, Dad & Brother all on this flight</div>
+          </div>
+          <div style="font-size:10px;padding:4px 10px;border-radius:20px;background:rgba(168,121,42,0.18);color:var(--gold);font-weight:700;white-space:nowrap;">First Class</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px;">
+          <div>
+            <div style="font-family:'Playfair Display',serif;font-size:28px;font-weight:700;color:var(--text);">16:30</div>
+            <div class="f-apt">ATL · Fri 23 Oct</div>
+          </div>
+          <div style="flex:1;text-align:center;">
+            <div style="color:var(--muted);font-size:18px;">→</div>
+            <div style="font-size:10px;color:var(--muted);margin-top:2px;">8h 20m · non-stop</div>
+          </div>
+          <div style="text-align:right">
+            <div style="font-family:'Playfair Display',serif;font-size:28px;font-weight:700;color:var(--text);">06:50</div>
+            <div class="f-apt">CDG · Sat 24 Oct</div>
+          </div>
+        </div>
+        <div style="border-top:1px solid var(--gold-border);padding-top:12px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;">
+          <div>
+            <div style="font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:var(--gold);">$18,064 <span style="font-size:12px;color:var(--muted);font-family:'Inter',sans-serif;font-weight:400;">per person</span></div>
+            <div style="font-size:11px;color:var(--muted);margin-top:2px;">× 3 travellers = ${fmt(18064 * 3)}</div>
+          </div>
+          <div style="font-size:11px;color:var(--muted);text-align:right;line-height:1.5;">
+            Dan & Dad's price includes<br>their PIT→ATL connector
+          </div>
+        </div>
+      </div>`;
+    return;
+  }
+
+  // Premium / Business — standard 3-column grid
+  const vis = FLIGHTS.filter(f => f.cls === selCls);
+  const grid = document.getElementById('flightCards');
+  grid.style.gridTemplateColumns = 'repeat(3, 1fr)';
+  grid.innerHTML = vis.map((f, i) => `
+    <div class="f-card ${i === selFltIdx ? 'f-selected' : ''}" onclick="selFlight(${i})">
+      ${f.rec ? '<div class="f-badge">★ Recommended</div>' : ''}
+      <div class="f-airline">${f.airline}</div>
+      <div class="f-class-badge">${f.label}</div>
+      <div class="f-route">
+        <div><div class="f-time">${f.dep}</div><div class="f-apt">PIT · Oct 23</div></div>
+        <div class="f-mid"><div class="f-arrow">→</div><div class="f-layover">${f.layover}</div></div>
+        <div style="text-align:right"><div class="f-time">${f.arr}</div><div class="f-apt">CDG · ${f.date}</div></div>
+      </div>
+      <div class="f-meta">
+        <div><div class="f-price">${fmt(f.price)}</div><div class="f-pp">per person</div></div>
+        <div class="on-time ${f.onTime >= 80 ? 'good' : 'bad'}">${f.onTime >= 80 ? '✓' : '⚠'} ${f.onTime}% on-time</div>
+      </div>
+    </div>`).join('');
+}
+
+function selFlight(i) { selFltIdx = i; renderFlights(); updateCosts(); }
+
+// ── BROTHER CARDS (Premium/Business tab) ──
+function renderBrother() {
+  document.getElementById('brotherCards').innerHTML = BROTHER_PIT.map(b => `
+    <div class="bro-card">
+      <div style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:8px;">Southwest Airlines</div>
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
+        <div><div class="f-time" style="font-size:20px;">${b.dep}</div><div class="f-apt">TPA</div></div>
+        <div class="f-mid"><div class="f-arrow">→</div><div style="font-size:10px;color:var(--muted);">Direct ✈</div></div>
+        <div style="text-align:right"><div class="f-time" style="font-size:20px;">${b.arr}</div><div class="f-apt">PIT</div></div>
+      </div>
+      <div style="display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--border-light);padding-top:10px;">
+        <div><div style="font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:var(--gold);">$311</div><div class="f-pp">Choice Economy</div></div>
+        <div class="on-time good">✓ 92% on-time</div>
+      </div>
+      <div style="font-size:11px;color:var(--muted);margin-top:8px;">${b.date} · ${b.note}</div>
+    </div>`).join('');
+}
+
+function selBroCon(i) {
+  selBroConIdx = i;
+  renderFlights(); // re-renders the fc layout which includes brother ATL cards
+  updateCosts();
+}
+
+// ── TICKETS ──
+function renderTickets() {
+  document.getElementById('ticketCards').innerHTML = TICKETS.map(t => {
+    const usd = Math.round(t.eur * EUR_USD);
+    return `<div class="tix-card ${t.id === selTix ? 'tix-selected' : ''}" onclick="selTicket('${t.id}',this)">
+      ${t.id === selTix ? '<div class="f-badge" style="background:var(--gold);">Selected</div>' : ''}
+      <div class="tix-tier">${t.tier}</div>
+      <div class="tix-section">${t.section}</div>
+      <div class="tix-eur">€${t.eur}<span class="tix-cur"> / ticket</span></div>
+      <div class="tix-usd">≈ $${usd} USD each</div>
+      <div class="tix-3">3 tickets total: <strong>≈ $${(usd * 3).toLocaleString()}</strong></div>
+      <div class="tix-tag ${t.warn ? 'warn' : 'ok'}">${t.warnTxt}</div>
+    </div>`;
+  }).join('');
+}
+
+// ── HOTELS ──
+function renderHotels() {
+  document.getElementById('hotelCards').innerHTML = Object.entries(HOTELS).map(([key, h]) => {
+    const cost = Math.round(h.nightlyRate * selNights);
+    return `<div class="h-card">
+      <div class="h-type-badge">${h.typeBadge}</div>
+      <div class="h-name">${h.name}</div>
+      <div class="h-area">${h.address} · Saint-Germain</div>
+      <div class="h-detail-row">
+        <div class="h-detail"><span class="dk">Sleeping</span><span>${h.bedrooms}</span></div>
+        <div class="h-detail"><span class="dk">Layout</span><span>${h.config}</span></div>
+      </div>
+      <div class="h-transit">🚇 ${h.transit}</div>
+      <div class="h-note">${h.note}</div>
+      ${h.extra ? `<div style="font-size:12px;color:var(--text-2);margin-top:10px;padding:10px 12px;background:var(--surface-2);border-radius:4px;border-left:3px solid var(--gold-border);line-height:1.5;">${h.extra}</div>` : ''}
+      ${h.verify ? `<div class="tag-verify">${h.verify}</div>` : ''}
+      <div class="h-price-row">
+        <span class="h-pval">${fmt(cost)}</span>
+        <span class="h-pnote">${selNights} nights · ~${fmt(h.nightlyRate)}/night</span>
+      </div>
+      <a href="${h.bookUrl}" target="_blank" rel="noopener" class="book-btn">View on Booking.com →</a>
+    </div>`;
+  }).join('');
+}
+
+// ── TABS ──
+function switchTab(e, id) {
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + id).classList.add('active');
+  e.target.classList.add('active');
+}
+
+// ── CLASS TOGGLE ──
+function setClass(cls, btn) {
+  selCls = cls;
+  selFltIdx = 0;
+  document.querySelectorAll('#btnPremium,#btnBusiness,#btnFirst').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('fcNote').style.display = cls === 'firstclass' ? '' : 'none';
+  renderFlights();
+  renderBrother();
+  updateCosts();
+}
+
+function selTicket(id) {
+  selTix = id;
+  document.querySelectorAll('.tix-tog').forEach(b => b.classList.remove('active'));
+  document.getElementById('t-' + id).classList.add('active');
+  renderTickets(); updateCosts();
+}
+
+function setHotelCost(key, btn) {
+  selHotelKey = key;
+  document.querySelectorAll('.htl-tog').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderHotels(); updateCosts();
+}
+
+function setNights(n, btn) {
+  selNights = n;
+  document.querySelectorAll('.ngt-tog').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.hnb-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('hnb-' + n).classList.add('active');
+  renderHotels(); updateCosts();
+}
+
+function setNightsHotel(n, btn) {
+  selNights = n;
+  document.querySelectorAll('.hnb-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.ngt-tog').forEach(b => b.classList.remove('active'));
+  document.getElementById('bn-' + n).classList.add('active');
+  renderHotels(); updateCosts();
+}
+
+// ── INIT ──
+renderFlights(); renderBrother(); renderTickets(); renderHotels(); updateCosts();
+</script>
+</body>
+</html>
